@@ -393,6 +393,19 @@
                 flex-direction: column;
                 gap: 20px;
             }
+
+            #navbar {
+                visibility: hidden;
+            }
+
+            .about-image {
+                visibility: hidden;
+                height: 0;
+            }
+
+            .skills {
+                justify-content: center;
+            }
         }
     </style>
 </head>
@@ -437,7 +450,7 @@
                 <div class="about-image"></div>
                 <div clas="about-text">
                     <h3>Passionate about data-driven solutions</h3>
-                    <p>I’m a data science student with a passion for machine learning and data analysis. I bring to the table experience, strong communication skills and a great work ethic work ethic coupled with passion for data science. </p>
+                    <p>I’m a data science student with a passion for machine learning and data analysis. I bring to the table experience, strong communication skills and a great work ethic coupled with passion for data science. </p>
                     <p>I have experience in machine learning research, working with a Vilnius University researcher. The theme of the project is maritime anomaly detection. I used <b>XGBoost</b> and <b>LSTM</b> architectures to create a confidence-interval based anomaly detection model, using quantile loss as the objecctive function.</p>
                     <div class="skills">
                         <span class="skill">Python</span>
@@ -458,7 +471,7 @@
             <h2 class="section-title">Featured Projects</h2>
             <div class="projects-grid">
                 <div class="project-card">
-                    <h3>Anchor anomaly detection project</h3>
+                    <h3>Maritime anomaly detection project</h3>
                     <p>I am currently helping to develop an anomaly detection system, that would detect anomalous movement in cargo ships. The basic idea is to use confidence interval models, utilizing quantile regression, to produce an anomaly score. </p>
                     <div class="project-tech">
                         <span class="tech-tag">PySpark</span>
@@ -469,7 +482,7 @@
                 </div>
                 <div class="project-card">
                     <h3>LinkedIn data job analysis/dashboard</h3>
-                    <p>Built a Tableau dashboard to illustrate the state data job market was (as reflected by LinkedIn postings) in 2021.</p>
+                    <p>Built a Tableau dashboard to illustrate the state data job market was (as reflected by LinkedIn postings) in 2024.</p>
                     <div class="project-tech">
                         <span class="tech-tag">PySpark</span>
                         <span class="tech-tag">Tableau</span>
@@ -477,7 +490,7 @@
                     <a href="https://public.tableau.com/app/profile/lukas.janu.auskas/viz/linkedin-from-kaggle-dashboard/Dashboard" class="project-link">View Project →</a>
                 </div>
                 <div class="project-card">
-                    <h3>FOREX model ETL (unfinished project)</h3>
+                    <h3>FOREX data engineering project</h3>
                     <p>Created an ELT pipeline to collect and update spot foreign exchange rates and macroeconomic data for a regression model and an interactive dashboard.</p>
                     <div class="project-tech">
                         <span class="tech-tag">Airflow</span>
@@ -487,6 +500,7 @@
                     </div>
                     <a href="https://github.com/lukasjanusauskas/forex" class="project-link">View Project →</a>
                 </div>
+                <!--
                 <div class="project-card">
                     <h3>Study-buddy chatbot (Future project)</h3>
                     <p>A RAG-system based chatbot that uses-provided pdfs to help students understand them.</p>
@@ -496,6 +510,7 @@
                     </div>
                     <a href="#" class="project-link">View Project →</a>
                 </div>
+                -->
             </div>
         </div>
     </section>
