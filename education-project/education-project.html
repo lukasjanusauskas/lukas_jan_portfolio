@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>European education analysis</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        a {
+            color: #d5d5f5;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #222222;
+            color: #e5e5e5;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 100px;
+            position: relative;
+            color: #DDDDDD;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            background: linear-gradient(135deg, #222222 0%, #333333 50%, #2a2a2a 100%);
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 20% 50%, rgba(255,255,255,0.02) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 50%, rgba(255,255,255,0.02) 0%, transparent 50%);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .hero-content {
+            z-index: 2;
+            position: relative;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #ffffff 0%, #cccccc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            color: #b3b3b3;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 15px 30px;
+            background: linear-gradient(135deg, #444444 0%, #555555 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 2px solid #666666;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            transition: left 0.5s;
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            border-color: #888888;
+        }
+
+        /* Project Sections */
+        .project-section {
+            padding: 100px 0;
+            position: relative;
+        }
+
+        .project-section:nth-child(even) {
+            background: #1a1a1a;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .section-number {
+            font-size: 1rem;
+            color: #888888;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #ffffff;
+        }
+
+        .section-description {
+            font-size: 1.125rem;
+            color: #b3b3b3;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .project-card {
+            background: #2a2a2a;
+            border-radius: 20px;
+            padding: 50px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+            border: 1px solid #333333;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #666666, #888888, #666666);
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.3);
+            border-color: #555555;
+        }
+
+        .card-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #444444 0%, #555555 100%);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 30px;
+            font-size: 2rem;
+        }
+
+        .card-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #ffffff;
+        }
+
+        .card-description {
+            font-size: 1.125rem;
+            color: #b3b3b3;
+            margin-bottom: 30px;
+        }
+
+        .card-features {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+
+        .card-features li {
+            padding: 8px 0;
+            color: #cccccc;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .card-features li::before {
+            content: '▶';
+            position: absolute;
+            left: 0;
+            color: #888888;
+            font-size: 12px;
+        }
+
+        .view-button {
+            display: inline-block;
+            padding: 12px 25px;
+            background: #333333;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 1px solid #444444;
+        }
+
+        .view-button:hover {
+            background: #444444;
+            border-color: #666666;
+            transform: translateX(5px);
+        }
+
+        /* Video Container */
+        .video-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            background: #1a1a1a;
+            border: 1px solid #333333;
+        }
+
+        .video-placeholder {
+            aspect-ratio: 16/9;
+            background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #888888;
+            font-size: 1.5rem;
+            position: relative;
+        }
+
+        .play-button {
+            width: 80px;
+            height: 80px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: #cccccc;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255,255,255,0.1);
+        }
+
+        .play-button:hover {
+            background: rgba(255,255,255,0.2);
+            transform: scale(1.1);
+        }
+
+        /* Grid Layout */
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        /* Footer */
+        .footer {
+            background: #1a1a1a;
+            padding: 60px 0;
+            text-align: center;
+            border-top: 1px solid #333333;
+        }
+
+        .footer-content {
+            color: #888888;
+        }
+
+        .footer h3 {
+            color: #ffffff;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .project-card {
+                padding: 30px;
+            }
+            
+            .project-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #1a1a1a;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #444444;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555555;
+        }
+
+
+        /* Contact Section */
+        .contact-content {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-content p {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            color: #BBBBBB;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 500;
+            color: #DDDDDD;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .contact-links a {
+            color: #DDDDDD;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 10px 20px;
+            border: 2px solid #DDDDDD;
+            transition: all 0.3s ease;
+        }
+
+        .contact-links a:hover {
+            background-color: #DDDDDD;
+            color: #222222;
+        }
+
+        .section {
+            padding: 50px 0;
+        }
+
+    </style>
+</head>
+
+    <!-- Data Collection Section -->
+    <section class="project-section" id="projects">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-number">part 0</div>
+                <h2 class="section-title">Motivation</h2>
+                <p class="section-description">What motivated me to do this project?</p>
+            </div>
+            
+            <div class="project-card">
+                <h3> Why did I choose to analyze education in Europe? </h3>
+                Personally, I have always been drawn to analyzing macroeconomic and sociopolitical data. In my university projects, I tend to analyzing and forecasting such data. Additionally, I was involved in education myself as a tutor at a company and later as a private tutor.
+                <hr/>
+
+                <h3>Why may this analysis be interesting?</h3>
+                There are two main reasons you may find this project interesting:
+
+                <ol>
+                    <li>By examining factors such as education expenditure, education attainment levels, activity levels and pupil to teacher ratio, the project highlights how education shapes workforce readiness and reflects state of affairs in a country. </li>
+                    <li> For recruiters, this project reflects an ability to derive actionable insights from complex datasets, communicate findings clearly.</li>
+                </ol>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Data Collection Section -->
+    <section class="project-section" id="projects">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-number">part 01</div>
+                <h2 class="section-title">Data collection</h2>
+                <p class="section-description">From raw csv files to star schema in a single notebook.</p>
+            </div>
+            
+            <div class="project-card">
+                <div class="card-icon">📊</div>
+                <h3 class="card-title">Data collection</h3>
+                <p class="card-description">In below given notebook I collect data and form fact and dimension tables. This part was a little tedious, however a vital step, without which the following steps would have been much more technically difficult. If you wish to see my data transformation process, I invite you to view the notebook.</p>
+                
+                <h3>The datasets:</h3>
+
+                <ul>
+                    <li> <a href="https://doi.org/10.2908/EDAT_LFSE_03">Population by educational attainment level, sex and age (%) - main indicators.</a></li>
+                    <li> <a href="https://doi.org/10.2908/LFSA_ARGAED">Activity rates by sex, age and educational attainment level (%).</a></li>
+                    <li> <a href="https://doi.org/10.2908/EDUC_UOE_PERP04">Ratio of pupils and students to teachers and academic staff by education level and programme orientation.</a></li>
+                    <li> <a href="https://databrowser.uis.unesco.org/"> Education expenditure data (with minor processing). [UNESCO Institute for Statistics (2025)] </a> </li>
+
+                </ul>
+                <br>
+
+                <a href="data-collection.html" class="view-button">View notebook →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Data Analysis Section -->
+    <section class="project-section">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-number">Part 02</div>
+                <h2 class="section-title">Data Analysis</h2>
+                <p class="section-description">In-depth statistical analysis.</p>
+            </div>
+            
+            <div class="project-card">
+                <div class="card-icon">🔬</div>
+                <h3 class="card-title">Analysis Notebook</h3>
+                <p class="card-description">The following notebook illustrates advanced analytical techniques paired with sociopolitical/macroecnomic context create meaningful insights.</p>
+                
+                <h4>Analysis conclusions:</h4>
+
+                <ul>
+                    <li>Tertiary education levels have a stronger relationship with activity rates than secondary or primary education levels.</li>
+                    <li>Higher education expenditure seems to correlate mostly with tertiary education levels more than secondary education levels (percentage of residents that have reached seccondary education and not higher).</li>
+                    <li>While education expenditure can influence better outcomes, in some cases simply pouring money is not the best course of action, if the assets are not used well.</li>
+                </ul>
+                <br>
+
+                <h4>Context, case studies:</h4>
+                
+                <ul>
+                    <li>Malta had an exceptionally large education expenditure compared to their GDP. This is explained by these main factors: (1) Malta is a small island that largely depends on its human resources, skilled labour (2) growing immigrant population and subsequent educational challenges.</li>
+                    <li>Turkey has very small activity levels for many reasons, two of which are: (1) small female participation in the labour market (2) small expenditure on social programmes, especially on education.</li>
+                    <li>Factors such as low teacher pay led to a large pupil to teacher ratio in Slovenia. This most likely did negatively impact overall performance and education quality. However the problem lies not in small expenditure, since the expenditure is even slightly bigger than European median. The problem might be in poor managament of said expenditure.</li>
+                </ul>
+
+                <br>
+                <a href="data-analysis.html" class="view-button">View Analysis →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Power BI Dashboard Section -->
+    <section class="project-section">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-number">Part 03</div>
+                <h2 class="section-title">Power BI Dashboard</h2>
+                <p class="section-description">Interactive business intelligence dashboard bringing data insights to life</p>
+            </div>
+            
+            <div class="project-card">
+                <div class="card-icon">📈</div>
+                <h3 class="card-title">Interactive Dashboard</h3>
+                <p class="card-description">Dynamic Power BI dashboard showcasing key metrics, trends, and actionable insights through intuitive visualizations.</p>
+                
+                <ul class="card-features">
+                    <li>Real-time data visualization</li>
+                    <li>Interactive filters and drill-down capabilities</li>
+                    <li>Key performance indicators (KPIs)</li>
+                    <li>Executive summary and insights</li>
+                </ul>
+                
+                <div class="video-container">
+                    <div class="video-placeholder">
+                        <div class="play-button" onclick="alert('Upload your Power BI dashboard video here')">
+                            ▶
+                        </div>
+                        <div style="position: absolute; bottom: 20px; left: 20px; font-size: 1rem;">
+                            Power BI Dashboard Demo
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <section class="section" id="contact">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <span>📧</span>
+                        <span>lukasjanusauskaslj@gmail.com</span>
+                    </div>
+                    <div class="contact-item">
+                        <span>📱</span>
+                        <span>+37064840994</span>
+                    </div>
+                </div>
+                <div class="contact-links">
+                    <a href="https://www.linkedin.com/in/lukas-janu%C5%A1auskas-6576392b1/">LinkedIn</a>
+                    <a href="imgs/CV_Lukas_Janušauskas_en.pdf">Resume</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Smooth scrolling for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all project cards
+        document.querySelectorAll('.project-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'all 0.6s ease';
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>
